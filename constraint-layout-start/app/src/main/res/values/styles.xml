@@ -1,0 +1,12 @@
+<!--
+ contient les styles graphiques à appliquer dans l'application
+-->
+
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+</resources>
