@@ -1,5 +1,8 @@
 package team.dev.com.topquiz.controller;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +16,7 @@ import team.dev.com.topquiz.R;
 import team.dev.com.topquiz.model.Question;
 import team.dev.com.topquiz.model.QuestionBank;
 
-public class GameActivity extends AppCompatActivity implements View.OnClickListener{
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView questionText;
     private Button answer1Btn;
@@ -24,7 +27,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private QuestionBank questionBank;
     private Question mCurrentQuestion;
 
+    private int mScore;
     private int mNumberOfQuestions;
+
+    public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
 
     public TextView getQuestionText() {
         return questionText;
@@ -90,12 +96,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         this.mNumberOfQuestions = mNumberOfQuestions;
     }
 
+    public int getmScore() {
+        return mScore;
+    }
+
+    public void setmScore(int mScore) {
+        this.mScore = mScore;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         this.questionBank = generateQuestions();
+        this.mScore = 0;
         this.mNumberOfQuestions = 4;
 
         this.questionText = (TextView) findViewById(R.id.activity_game_question_text); //R.id.identifiant_de_vue
@@ -171,15 +186,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int responseIndex = (int) v.getTag();
 
-        if(responseIndex == this.mCurrentQuestion.getmAnswerIndex()){
-            Toast.makeText(this, "Correct",Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "Wrong answer!",Toast.LENGTH_SHORT).show();
+        if (responseIndex == this.mCurrentQuestion.getmAnswerIndex()) {
+            this.mScore++;
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show();
         }
 
-        if(--mNumberOfQuestions == 0){
+        if (--mNumberOfQuestions == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        }else{
+            builder.setTitle("Well done!")
+                    .setMessage("Your score is " + this.mScore)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // End the activity
+                            Intent intent = new Intent();
+                            intent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                    })
+                    .create()
+                    .show();
+        } else {
             this.mCurrentQuestion = this.questionBank.getQuestion();
             displayQuestion(this.mCurrentQuestion);
         }

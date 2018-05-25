@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mNameInput;
     private Button mPlayButton;
     private User mUser;
+    public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
 
     public TextView getmGreetingText() {
         return mGreetingText;
@@ -89,8 +90,17 @@ public class MainActivity extends AppCompatActivity {
 
                 mUser.setmFirstName(mNameInput.getText().toString());
 
-                startActivity(gameActivity );
+                startActivityForResult(gameActivity, GAME_ACTIVITY_REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            // Fetch the score from the Intent
+            int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
+
+        }
     }
 }
