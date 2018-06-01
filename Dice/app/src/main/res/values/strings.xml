@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name" translatable="false">Dice App</string>
+    <string name="poll_btn">Poll The Dice ...</string>
+    <string name="_6_sided_txt_btn">6 Sided Dice</string>
+    <string name="_20_sided_txt_btn">20 Sided Dice</string>
+    <string name="sided_dice_txt">%d Side The Dice</string>
+</resources>

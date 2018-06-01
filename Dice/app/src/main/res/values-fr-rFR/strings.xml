@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dice App</string>
+    <string name="poll_btn">Lancer le dé ...</string>
+    <string name="_6_sided_txt_btn">Dé 6 faces</string>
+    <string name="_20_sided_txt_btn">Dé 20 faces</string>
+    <string name="sided_dice_txt">Dé %d faces</string>
+</resources>
