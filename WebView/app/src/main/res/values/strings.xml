@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 <resources>
     <string name="app_name">WebView</string>
 </resources>
+=======
+<resources>
+    <string name="app_name">WebView</string>
+</resources>
+>>>>>>> 570f82a09631368aed6127f8aedbe1527028ba45

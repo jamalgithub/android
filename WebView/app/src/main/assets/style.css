@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     background-color: #3F51B5;
     color: white;
@@ -9,4 +10,17 @@ a{
 
 b{
     color: #FF4081;
+=======
+body{
+    background-color: #3F51B5;
+    color: white;
+}
+
+a{
+    color: yellow;
+}
+
+b{
+    color: #FF4081;
+>>>>>>> 570f82a09631368aed6127f8aedbe1527028ba45
 }
